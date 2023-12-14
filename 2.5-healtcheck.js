@@ -27,8 +27,10 @@ app.get('/random', function (req, res) {
 });
 
 app.get('/healthz', function (req, res) {
-    https.request('https://yesno.wtf', {method: 'HEAD'}, (result) => {
+    const healthzReq = https.request('https://yesno.wtf', {method: 'HEAD'}, (result) => {
         res.status(result.statusCode).end();
+    }).on('error', (err) => {
+        res.status(500).end();
     }).end()
 })
 
