@@ -1,0 +1,12 @@
+version: '3.8'
+
+services:
+  api:
+    build:
+      context: .
+      dockerfile: ./Dockerfile
+    ports:
+    - '${API_PORT}:3000'
+    command: nodemon 2.5-healtcheck.js
+    volumes:
+    - .:/app
